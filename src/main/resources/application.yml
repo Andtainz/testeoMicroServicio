@@ -1,62 +1,25 @@
-spring:
+﻿spring:
   application:
     name: ActividadMicroServicios
-    version: 1.0.0
-  
-  # Configuración de JPA/Hibernate
+
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
     show-sql: false
-    properties:
-      hibernate:
-        format_sql: true
-        jdbc:
-          batch_size: 20
-        order_inserts: true
-        order_updates: true
-  
-  # Datasource
-  datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:productos_db}
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:valorant2026}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
-      connection-timeout: 30000
-  
-  # Jackson
-  jackson:
-    serialization:
-      write-dates-as-timestamps: false
-    default-property-inclusion: non_null
 
-# Configuración de servidor
+  datasource:
+    url: jdbc:mysql://localhost:3306/productos_db
+    username: root
+    password: mia1234567
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 server:
-  port: ${SERVER_PORT:8080}
+  port: 8080
   servlet:
     context-path: /api/v1
-  error:
-    include-message: always
-    include-binding-errors: always
 
-# Logging
 logging:
   level:
     root: INFO
     com.example: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-
-# Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-  endpoint:
-    health:
-      show-details: when-authorized
